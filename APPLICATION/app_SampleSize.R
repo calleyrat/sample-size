@@ -6,7 +6,6 @@ library(shinyjs)
 library(drcarlate)
 library(rpact)
 library(shinycssloaders)
-library(shinyjs)
 library(bsplus)
 
 
@@ -977,7 +976,7 @@ server <- function(input, output, session) {
   output$proportion <- renderText(paste0("<p>The needed sample size is <b>", resProp(), "</b> patients in each group. </p>", b()))
   output$prediction <- renderText(paste0("<p>The needed sample size is <b>", resPred(), "</b> patients. </p>", c()))
   output$AUC <- renderText(paste0("<p>The needed sample size is <b>", resAUC(),"</b> patients.</p>", d()))
-  output$survival <- renderText(paste0("<p>The needed sample size is <b>", resSurv(), "</b> patients.</p>", e()))
+  output$survival <- renderText(paste0("<p>The needed sample size is <b>", resSurv(), "</b> patients in each group.</p>", e()))
   
   # copy the result -------------------------------------------------------------------------------------------------------------
   observeEvent(input$copy_link_description, {
@@ -1001,7 +1000,7 @@ server <- function(input, output, session) {
     session$sendCustomMessage("txt", text)
   })
   observeEvent(input$copy_link_survival, {
-    text <-  paste("The needed sample size is", resSurv(), "patients in each group.", b())
+    text <-  paste("The needed sample size is", resSurv(), "patients in each group.", e())
     session$sendCustomMessage("txt", text)
   })
 }
